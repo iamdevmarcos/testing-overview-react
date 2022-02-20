@@ -1,31 +1,33 @@
-import { plus, minus, multiply, divide } from './math';
+import { plus, minus, multiply, divide } from "./math";
 
-describe('testing math functions', () => {
+describe("testing math functions", () => {
+  it("should add correctly", () => {
+    const result = plus(5, 8);
 
-    it('should add correctly', () => {
-        let result = plus(5, 8);
-        expect(result).toBe(13);
-    });
+    expect(result).toBe(13);
+  });
 
-    it('should reduce correctly', () => {
-        let result = minus(4, 3);
-        let result2 = minus(3, 4);
-        let result3 = minus(3, 3);
-        expect(result).toBe(1);
-        expect(result2).toBe(-1);
-        expect(result3).toBe(0);
-    });
+  it("should reduce correctly", () => {
+    const result = minus(4, 3);
+    const result2 = minus(3, 4);
+    const result3 = minus(3, 3);
 
-    it('should multiply correctly', () => {
-        let result = multiply(3, 5);
-        expect(result).toBe(15);
-    });
-    
-    it('should divide correctly', () => {
-        let result = divide(6, 2);
-        expect(result).toBe(3);
-    });
+    expect(result).toBe(1);
+    expect(result2).toBe(-1);
+    expect(result3).toBe(0);
+  });
 
+  it("should multiply correctly", () => {
+    const result = multiply(5, 10);
+
+    expect(result).toBe(50);
+  });
+
+  it("should divide correctly", () => {
+    const result = divide(20, 2);
+
+    expect(result).toBe(10);
+  });
 });
 
 export {};
