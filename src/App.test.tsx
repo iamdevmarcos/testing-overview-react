@@ -28,4 +28,15 @@ it("should have a container div", () => {
   );
 });
 
+it("should render NotFound component when entering a non existing route", () => {
+  const { container } = render(
+    <MemoryRouter initialEntries={["/s"]}>
+      <App />
+    </MemoryRouter>
+  );
+
+  const h2 = container.getElementsByTagName("h2")[0];
+  expect(h2.innerText).toBe("Página não encontrada");
+});
+
 export {};
