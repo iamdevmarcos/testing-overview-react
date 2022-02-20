@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
+import { act } from "react-dom/test-utils";
 import App from "./App";
 
 describe("testing math functions", () => {
@@ -30,13 +31,32 @@ it("should have a container div", () => {
 
 it("should render NotFound component when entering a non existing route", () => {
   const { container } = render(
-    <MemoryRouter initialEntries={["/s"]}>
+    <MemoryRouter initialEntries={["/blablalba"]}>
       <App />
     </MemoryRouter>
   );
 
   const h2 = container.getElementsByTagName("h2")[0];
-  expect(h2.innerText).toBe("Página não encontrada");
+  expect(h2.innerHTML).toBe("Página não encontrada");
+});
+
+it("should go to the registration page when clicking on the register button", () => {
+  const { container } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  );
+
+  act(() => {
+    const registerBtn = container
+      .getElementsByClassName("headerRight")[0]
+      .getElementsByTagName("a")[0];
+
+    registerBtn.click();
+  });
+
+  const registerTitle = screen.getByText("Cadastro de carro");
+  expect(registerTitle).toBeInTheDocument();
 });
 
 export {};
